@@ -1,3 +1,4 @@
+# address rinkeby 0x88E95624f03251970501Da6e3fA6f93F93B06890 with which I did those exercices
 # ERC721 101
 
 ## Introduction
