@@ -79,6 +79,8 @@ async function doTD(deployer, network, accounts) {
   console.log("------Exercice6b------");
   await ExerciceSolution.mint(account, { from: account });
   await ExerciceSolution.offerForSale(2, "100", { from: account });
+  ownerOfAnimal = await ExerciceSolution.getOwnerof(2);
+  console.log(ownerOfAnimal);
   await Evaluator.ex6b_auctionAnimal_buy(2, { from: account });
   await getBalance(account, network, accounts);
 }
