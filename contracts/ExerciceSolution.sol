@@ -141,12 +141,28 @@ contract ExerciceSolution is ERC721 {
             "you have to send the rigth price of this animal"
         );
         registerAnimalPrice[animalNumber] = 0;
-        // _transferFrom(ownerOf(animalNumber), msg.sender, animalNumber);
+        // safeTransferFrom(ownerOf(animalNumber), address(this), animalNumber);
+        // safeTransferFrom(ownerOf(animalNumber), msg.sender, animalNumber);
         // msg.sender.transfer(msg.value);
+        // transferFrom(owner, address(this), animalNumber);
+        // approve(evaluator, animalNumber);
+        // transferFrom(address(this), evaluator, animalNumber);
+        transferFrom(owner, evaluator, animalNumber);
+        payable(owner).transfer(msg.value);
     }
 
     function offerForSale(uint256 animalNumber, uint256 price) external {
-        require(ownerOf(animalNumber) == msg.sender);
+        require(
+            ownerOf(animalNumber) == msg.sender,
+            "you are not the owner of this animal"
+        );
+        // approve(address(this), animalNumber);
+        // transferFrom(owner, address(this), animalNumber);
+        approve(evaluator, animalNumber);
         registerAnimalPrice[animalNumber] = price;
+    }
+
+    function getOwnerof(uint256 nbAnimal) public view returns (address) {
+        return ownerOf(nbAnimal);
     }
 }
